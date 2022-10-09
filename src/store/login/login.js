@@ -43,13 +43,13 @@ const loginModule = {
         // 从缓存获取用户登陆信息加载到vuex
         setupLoginState({commit}) {
             const userInfo = localCache.getCache('userInfo')
-            // const userMenus = localCache.getCache('userMenus')
+            const userMenus = localCache.getCache('userMenus')
             if (userInfo) {
                 commit('changeUserInfo',userInfo)
             }
-            // if (userMenus) {
-            //     commit('changeUserMenus',userMenus)
-            // }
+            if (userMenus) {
+                commit('changeUserMenus',userMenus)
+            }
         }
     }
 }

@@ -10,19 +10,19 @@
         <div class="content">
             <el-form label-width="100px">
                 <el-form-item label="组织名">
-                    <el-input></el-input>
+                    <el-input v-model="organizeData.organizeName" disabled></el-input>
                 </el-form-item>
                 <el-form-item label="组织电话">
-                    <el-input></el-input>
+                    <el-input v-model="organizeData.phone" disabled></el-input>
                 </el-form-item>
                 <el-form-item label="地址">
-                    <el-input></el-input>
+                    <el-input v-model="organizeData.address" disabled></el-input>
                 </el-form-item>
                 <el-form-item label="身份">
                     <span>组织</span>
                 </el-form-item>
                 <el-form-item label="概要">
-                    <el-input type="textarea"></el-input>
+                    <el-input type="textarea" v-model="organizeData.summary" disabled></el-input>
                 </el-form-item>
             </el-form>
         </div>
@@ -33,6 +33,12 @@
 <script>
 import { Tickets, Setting } from '@element-plus/icons-vue'
 export default {
+    props: {
+        organizeData: {
+            type: Object,
+            default:() => {}
+        }
+    },
     components: {
         Tickets,
         Setting

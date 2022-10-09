@@ -5,7 +5,7 @@ import store from './store/index'
 import { setupStore } from './store/index'
 
 const app = createApp(App)
-app.use(router)
 app.use(store)
 setupStore()
+app.use(router)
 app.mount('#app')

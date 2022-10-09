@@ -1,5 +1,7 @@
 import {createRouter,createWebHistory} from 'vue-router'
 import userRoute from '@/router/system/user/user'
+import userManagementRoute from '@/router/system/user-management/user-management'
+import examinessRoute from '@/router/exam/examinee/examinee'
 
 const routes = [
     {
@@ -20,7 +22,9 @@ const routes = [
         },
         component: ()=>import('@/view/main/Main.vue'),
         children: [
-            userRoute
+            userRoute,
+            userManagementRoute,
+            examinessRoute
         ]
     },
 ]

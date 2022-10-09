@@ -1,6 +1,5 @@
 import YXRequest from './request/reuqest'
 import { BASE_URL, TIME_OUT } from './request/config'
-import localCache from '@/utils/LocalCache'
 import qs from 'qs'
 
 const yxRequest = new YXRequest({

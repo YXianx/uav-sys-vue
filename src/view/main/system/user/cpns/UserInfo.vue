@@ -19,10 +19,10 @@
                 <el-col :span="18" class="info">
                     <el-form label-width="100px">
                         <el-form-item label="用户名">
-                            <el-input></el-input>
+                            <el-input v-model="userData.userName" disabled></el-input>
                         </el-form-item>
                         <el-form-item label="手机">
-                            <el-input></el-input>
+                            <el-input v-model="userData.phone" disabled></el-input>
                         </el-form-item>
                         <el-form-item>
                             <el-button type="primary">修改密码</el-button>
@@ -38,6 +38,15 @@
 <script>
 import { Tickets, Setting } from '@element-plus/icons-vue'
 export default {
+    props: {
+        userData: {
+            type: Object,
+            default: () => ({
+                userName: 'user',
+                phone: '123455'
+            })
+        }
+    },
     components: {
         Tickets,
         Setting
