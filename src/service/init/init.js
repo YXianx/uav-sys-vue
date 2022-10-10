@@ -1,11 +1,11 @@
-import { yxRequest } from "../index";
+import { yxRequest } from '../index'
 
 /**
  * 请求系统信息
- * @returns 
+ * @returns
  */
 export function reuqestSysInfo() {
-    return yxRequest.get({
-        url: '/sys'
-    })
+  return yxRequest.get({
+    url: '/sys'
+  })
 }

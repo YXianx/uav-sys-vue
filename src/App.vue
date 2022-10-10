@@ -7,15 +7,13 @@
 <script>
 export default {
   name: 'App',
-  components: {
-    
-  }
+  components: {}
 }
 </script>
 
 <style>
 @import url('./assets/css/base/base.css');
-.app{
+.app {
   height: 100%;
 }
 </style>

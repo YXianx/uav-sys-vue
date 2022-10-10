@@ -1,89 +1,90 @@
 import axios from 'axios'
 
 class YXRequest {
-    instance // axios实例 
-    interceptors // 实例拦截器
-    constructor(AxiosRequestConfig) {
-        this.instance = axios.create(AxiosRequestConfig)
-        this.interceptors = AxiosRequestConfig.interceptors
-        
-        // 请求时携带set-Cookie
-        this.instance.defaults.withCredentials = true
-        // 实例请求 & 响应拦截器
-        this.instance.interceptors.request.use(
-            this.interceptors.requestInterceptor,
-            this.interceptors.requestInterceptorCatch
-        )
-        this.instance.interceptors.response.use(
-            this.interceptors.responseInterceptor,
-            this.interceptors.responseInterceptorCatch
-        )
+  instance // axios实例
+  interceptors // 实例拦截器
+  constructor(AxiosRequestConfig) {
+    this.instance = axios.create(AxiosRequestConfig)
+    this.interceptors = AxiosRequestConfig.interceptors
 
-        // 全局默认请求 & 响应拦截器
-        this.instance.interceptors.request.use(
-            (config) => {
-                return config
-            },
-            (err) => {
-                return config
-            }
-        )
-        this.instance.interceptors.response.use(
-            (res) => {
-                return res.data
-            },
-            (err) => {
-                return err
-            }
-        )
-    }
+    // 请求时携带set-Cookie
+    this.instance.defaults.withCredentials = true
+    // 实例请求 & 响应拦截器
+    this.instance.interceptors.request.use(
+      this.interceptors.requestInterceptor,
+      this.interceptors.requestInterceptorCatch
+    )
+    this.instance.interceptors.response.use(
+      this.interceptors.responseInterceptor,
+      this.interceptors.responseInterceptorCatch
+    )
 
-    request(config) {
-        return new Promise((resolve, reject) => {
-            // 单个请求 & 响应拦截器
-            if(config.interceptors != null) {
-                config = config.interceptors.requestInterceptor(config)
-            }
-            this.instance.request(config)
-            .then((res) => {
-                if(config.interceptors != null) {
-                    res = config.interceptors.responseInterceptor(res)
-                }
-                resolve(res)
-            })
-            .catch((err) => {
-                reject(err)
-            })
+    // 全局默认请求 & 响应拦截器
+    this.instance.interceptors.request.use(
+      (config) => {
+        return config
+      },
+      (err) => {
+        return config
+      }
+    )
+    this.instance.interceptors.response.use(
+      (res) => {
+        return res.data
+      },
+      (err) => {
+        return err
+      }
+    )
+  }
+
+  request(config) {
+    return new Promise((resolve, reject) => {
+      // 单个请求 & 响应拦截器
+      if (config.interceptors != null) {
+        config = config.interceptors.requestInterceptor(config)
+      }
+      this.instance
+        .request(config)
+        .then((res) => {
+          if (config.interceptors != null) {
+            res = config.interceptors.responseInterceptor(res)
+          }
+          resolve(res)
         })
-    }
-
-    get(config) {
-        return this.request({
-            ...config,
-            method: 'GET'
+        .catch((err) => {
+          reject(err)
         })
-    }
+    })
+  }
 
-    post(config) {
-        return this.request({
-            ...config,
-            method: 'POST'
-        })
-    }
+  get(config) {
+    return this.request({
+      ...config,
+      method: 'GET'
+    })
+  }
 
-    delete(config) {
-        return this.request({
-            ...config,
-            method: 'DELETE'
-        })
-    }
+  post(config) {
+    return this.request({
+      ...config,
+      method: 'POST'
+    })
+  }
 
-    patch(config) {
-        return this.request({
-            ...config,
-            method: 'PATCH'
-        })
-    }
+  delete(config) {
+    return this.request({
+      ...config,
+      method: 'DELETE'
+    })
+  }
+
+  patch(config) {
+    return this.request({
+      ...config,
+      method: 'PATCH'
+    })
+  }
 }
 
 export default YXRequest

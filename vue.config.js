@@ -9,26 +9,25 @@ module.exports = defineConfig({
   devServer: {
     proxy: {
       '^/api': {
-        target: 'http://192.168.5.18:10060/api',
+        // target: 'http://192.168.5.18:10060/api',
+        target: 'http://bsen.cc:10060/api',
         pathRewrite: {
-          '^/api': '' 
+          '^/api': ''
         },
         changeOrigin: true
       }
-    },
+    }
   },
-  configureWebpack:{
-    resolve:{
-      alias:{
-
-      }
+  configureWebpack: {
+    resolve: {
+      alias: {}
     },
-    plugins:[
+    plugins: [
       AutoImport({
-        resolvers: [ElementPlusResolver()],
+        resolvers: [ElementPlusResolver()]
       }),
       Components({
-        resolvers: [ElementPlusResolver()],
+        resolvers: [ElementPlusResolver()]
       }),
       ElmentPlus()
     ]
